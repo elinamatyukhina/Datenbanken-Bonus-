@@ -1,0 +1,21 @@
+/* 
+DISKUSSION Aufgabe 2: Präfix im Primärschlüssel (B12345, C12345, N12345)
+
+PROBLEME:
+- Primärschlüssel sollten numerisch/automatisch sein (SERIAL PRIMARY KEY).
+- Präfix macht Abfragen komplizierter (String-Vergleiche statt numerisch).
+- Nicht normalisiert - Typ-Information redundant.
+- Schwer zu sortieren (B12345, B12346, C12345 statt 1,2,3).
+- Keine saubere Referenzintegrität.
+
+BESSERE ALTERNATIVEN:
+1. Separate Tabellen (books, cds, dvds, music_scores) - viel Redundanz
+2. Eine Tabelle mit item_type Feld - besser, da gemeinsame Attribute
+3. Generalisierung: Basis-Tabelle + spezifische Tabellen - komplexer
+
+GEWÄHLTE LÖSUNG: Eine Tabelle "items" mit item_type
+- Alle Gegenstände haben gemeinsame Attribute (Titel, Autor, etc.)
+- item_type unterscheidet: 'book', 'cd', 'dvd', 'music_score'
+- Spezifische Attribute als optionale Felder
+- Einheitlicher Primärschlüssel (item_id)
+*/
