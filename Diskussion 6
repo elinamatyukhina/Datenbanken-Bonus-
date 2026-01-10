@@ -1,0 +1,27 @@
+/*
+DISKUSSION Aufgabe 6: Verleih-System Design
+
+ANSATZ: Alle Ausleihen in einer Tabelle mit NULL für Enddatum bei aktiven Ausleihen
+
+VORTEILE:
+- Einfache Struktur, eine Tabelle für alle Ausleihen
+- Aktive Ausleihen: WHERE end_date IS NULL
+- Beendete Ausleihen: WHERE end_date IS NOT NULL
+- Historische Daten bleiben erhalten
+- Keine Datenredundanz
+
+NACHTEILE:
+- NULL-Werte müssen in Abfragen berücksichtigt werden
+- Potenzielle Verwirrung bei NULL-Handling
+
+ALTERNATIVE: Separate Tabellen (active_loans, loan_history)
+- Vorteil: Klarere Trennung
+- Nachteil: Komplexer, Daten müssen beim Rückgeben verschoben werden
+- Nachteil: Doppelte Struktur, mehr Wartung
+
+GEWÄHLTE LÖSUNG: Eine Tabelle mit NULL für aktive Ausleihen
+- Einfach und effizient
+- Standard-Praxis in Datenbanken
+- Historische Daten bleiben erhalten
+- CHECK Constraint: end_date >= start_date (falls beide gesetzt)
+*/
