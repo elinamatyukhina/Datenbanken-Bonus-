@@ -1,0 +1,33 @@
+/*
+DISKUSSION: Normalisierung
+
+VERWENDETE NORMALFORM: 3NF
+
+BEGRÜNDUNG:
+- Alle Tabellen sind in 3NF: Keine funktionale Abhängigkeiten zwischen Nicht-Schlüssel-Attributen
+- Beispiel: In "items" gibt es keine Abhängigkeiten wie "item_publisher → item_publication_place"
+- Fremdschlüssel-Beziehungen sind korrekt in separate Tabellen ausgelagert (n:n Beziehungen)
+
+VORTEILE DER 3NF:
+1. Redundanzfreiheit: Jede Information nur einmal gespeichert
+   - Autoren in separater Tabelle, nicht in jedem Item wiederholt
+   - Item-Typen zentral in item_types, nicht redundant
+2. Konsistenz: Änderungen müssen nur an einer Stelle gemacht werden
+   - Autor-Name ändern: Nur in authors-Tabelle
+   - Item-Typ ändern: Nur in item_types-Tabelle
+3. Integrität: Fremdschlüssel garantieren referenzielle Integrität
+4. Flexibilität: Einfache Erweiterung ohne Redesign
+   - Neue Item-Typen: Einfach INSERT in item_types
+   - Neue Beziehungen: Separate Tabellen (item_authors, item_music_pieces)
+
+WARUM NICHT HÖHERE NORMALFORMEN (BCNF, 4NF, 5NF)?
+- 3NF ist für dieses Schema ausreichend
+- Höhere Normalformen würden Komplexität erhöhen ohne praktischen Nutzen
+- Keine mehrwertigen Abhängigkeiten oder Join-Abhängigkeiten vorhanden
+- Performance-Überlegungen: 3NF bietet guten Kompromiss zwischen Normalisierung und Abfrage-Performance
+
+BEISPIELE FÜR NORMALISIERUNG IM SCHEMA:
+- item_authors: n:n Kardinalität normalisiert (sonst müsste man mehrere Autoren in items speichern)
+- music_piece_parts: Teile von Musikstücken in separate Tabelle (sonst wiederholte Struktur)
+- shelf_levels: Tablare in separate Tabelle (sonst müsste man feste Anzahl von Ebenen in shelves haben)
+*/
