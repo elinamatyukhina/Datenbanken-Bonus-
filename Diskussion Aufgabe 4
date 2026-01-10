@@ -1,0 +1,29 @@
+/*
+DISKUSSION Aufgabe 4: Separate Tabelle für Item-Typen und durchgehende Nummerierung
+
+ITEM-TYPEN TABELLE:
+- Vorteil: Referenzintegrität, einfache Erweiterung neuer Typen, zentrale Verwaltung
+- CHAR(1) als Primärschlüssel: Sinnvoll bei max 26 Typen, kompakt, lesbar
+- Nachteil: Zusätzliche Tabelle, JOIN bei Abfragen
+
+DURCHGEHENDE NUMMERIERUNG (Autoincrement):
+VORTEILE:
+- Einfache Sortierung und Referenzierung
+- Keine Lücken bei Typwechsel
+- Einheitliche Primärschlüssel-Struktur
+- Einfache JOINs und Abfragen
+
+NACHTEILE:
+- Keine Typ-Information im Schlüssel (muss JOIN gemacht werden)
+- Schwerer zu erkennen, welcher Typ ein Item ist ohne Abfrage
+- Bei sehr vielen Items: Längere IDs
+
+ALTERNATIVE: Präfix im Schlüssel (B12345, C12345)
+- Vorteil: Typ sofort erkennbar
+- Nachteil: String-Vergleiche, schwer zu sortieren, nicht normalisiert
+
+GEWÄHLTE LÖSUNG: Durchgehende Nummerierung + item_types Tabelle
+- Beste Normalisierung
+- Einfache Erweiterung
+- Referenzintegrität durch Fremdschlüssel
+*/
